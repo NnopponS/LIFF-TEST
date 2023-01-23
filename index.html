@@ -36,13 +36,13 @@
   <button id="btnLogOut" onclick="logOut()">Log Out</button>
   <button id="btnClose" onclick="closed()">Close</button>
 
-  <!-- <script src="js/vconsole.min.js"></script> -->
+  <script src="js/vconsole.min.js"></script>
   <!-- <script>
     var vConsole = new VConsole()
     console.log("Hello World!")
   </script> -->
 
-  <!-- <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script> -->
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     function createUniversalLink() {
     }
@@ -75,16 +75,30 @@
     }
 
     function getEnvironment() {
+      document.getElementById("os").append(lift.getOS())
+      document.getElementById("language").append(lift.getLanguage())
+      document.getElementById("version").append(lift.getVersion())
+      document.getElementById("accessToken").append(lift.getAccessToken())
+      document.getElementById("isInClient").append(lift.isInClient())
+      if (liff.isInClient()){
+        document.getElementById("btnLogOut").style.display = "none"
+        // ถ้าเปิดในไลน์ จะซ่อน Log out
+      } else {
+        document.getElementById("btnMsg").style.display = "none"
+        document.getElementById("btnScanCode").style.display = "none"
+        document.getElementById("btnClose").style.display = "none"
+        // เปิดเว็บนอก ซ่อน 3 ปุ่มนี้
+      }
     }
 
     async function main() {
-      alert("LINE Developers x Skooldio")
-      await liff.init({ liffId: "YOUR-LIFF-ID" })
-      // getEnvironment()
-      // getUserProfile()
-      // getContext()
-      // getFriendship()
-      // createUniversalLink()
+      alert("LINE Developers x Noppon")
+      await liff.init({ liffId: "1657839191-xM17jOLV" })
+      getEnvironment()
+      getUserProfile()
+      getContext()
+      getFriendship()
+      createUniversalLink()
     }
     main()
   </script>
